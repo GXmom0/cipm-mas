@@ -1,0 +1,471 @@
+{
+  "calendar": {
+    "PLOT-0913": {
+      "expectedHarvestDate": "2026-12-09",
+      "phenology": "bud",
+      "remainingDays": 25,
+      "version": "CAL-2026.11",
+      "windowCloseInDays": 8
+    }
+  },
+  "dashboard": {
+    "alerts": [
+      {
+        "level": "warning",
+        "plotNo": "PLOT-0913",
+        "text": "任务级阻断，处方生成已暂停"
+      }
+    ],
+    "plots": [
+      {
+        "areaMu": 96.0,
+        "badges": [
+          "BLOCKED"
+        ],
+        "farmName": "呼图壁棉花示范农场",
+        "farmNo": "FARM-XJ-HT-01",
+        "plotName": "石河子示范田-北区",
+        "plotNo": "PLOT-0913",
+        "stages": {
+          "assessment": "未开始",
+          "execution": "未开始",
+          "patrol": "阻断待复核",
+          "prescription": "已阻断"
+        },
+        "updatedAt": "2026-11-13T08:05:00+08:00"
+      }
+    ],
+    "snapshotAt": "2026-11-13T08:05:00+08:00",
+    "todos": [
+      {
+        "plotNo": "PLOT-0913",
+        "text": "Z03 置信度 0.62，待人工复核",
+        "type": "review"
+      }
+    ]
+  },
+  "datasetVersion": "2026.11.13",
+  "description": "Z03 置信度 0.62，任务级整体阻断，不生成任何处方。",
+  "dispatchCommands": [],
+  "expected": {
+    "PLOT-0913": {
+      "blockingPartitions": [
+        "Z03"
+      ],
+      "confidence": 0.62,
+      "prescriptions": 0,
+      "taskBlockStatus": "blocked_pending_review"
+    }
+  },
+  "farm": {
+    "farmNo": "FARM-XJ-HT-01",
+    "name": "呼图壁棉花示范农场",
+    "region": "south"
+  },
+  "plots": [
+    {
+      "areaMu": 96.0,
+      "expectedHarvestDate": "2026-12-09",
+      "irrigation": "non_drip",
+      "owner": "示范农场一组",
+      "phenology": "bud",
+      "plotName": "石河子示范田-北区",
+      "plotNo": "PLOT-0913",
+      "region": "north",
+      "variety": "新陆早 57 号"
+    }
+  ],
+  "prescriptions": [],
+  "registry": [
+    {
+      "category": {
+        "aiName": "啶虫脒",
+        "formulation": "乳油"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        10.0,
+        20.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260381",
+      "registryItemNo": "XJ-ACE-0381",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 7,
+      "seasonUsageLimit": 3,
+      "sprayVolumeRangeLPerMu": [
+        1.2,
+        2.0
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "吡虫啉",
+        "formulation": "可湿性粉剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        8.0,
+        16.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260453",
+      "registryItemNo": "XJ-IMI-0453",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 5,
+      "seasonUsageLimit": 3,
+      "sprayVolumeRangeLPerMu": [
+        1.0,
+        1.8
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "阿维菌素",
+        "formulation": "悬浮剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        6.0,
+        12.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260219",
+      "registryItemNo": "XJ-ABM-0219",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 10,
+      "seasonUsageLimit": 2,
+      "sprayVolumeRangeLPerMu": [
+        1.0,
+        1.6
+      ],
+      "target": "pest_disease",
+      "toxicity": "medium",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "联苯·噻虫嗪",
+        "formulation": "悬浮剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        20.0,
+        40.0
+      ],
+      "formulationType": "mixture_registered",
+      "registrationNo": "PD20260777",
+      "registryItemNo": "XJ-MIX-0777",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 14,
+      "seasonUsageLimit": 2,
+      "sprayVolumeRangeLPerMu": [
+        1.2,
+        1.8
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    }
+  ],
+  "scenarioId": "low_confidence_plot",
+  "scenarioName": "置信度不足地块",
+  "schemaVersion": "1.0",
+  "seed": 20261113,
+  "stressResults": [
+    {
+      "evidence": [
+        {
+          "refId": "TH-APHID-2026",
+          "type": "threshold",
+          "version": "v1"
+        },
+        {
+          "refId": "BL-COTTON-FLOWER-2026",
+          "type": "baseline",
+          "version": "BL-COTTON-FLOWER-2026@v2"
+        }
+      ],
+      "orthophoto": {
+        "bands": [
+          "NIR",
+          "RED",
+          "GREEN"
+        ],
+        "cloudPct": 4.0,
+        "coverRatio": 1.0,
+        "gsdCm": 3.2,
+        "productVersion": "ortho-2026.11.13-020",
+        "readyTime": "2026-11-13T08:00:00+08:00",
+        "sortieNo": "FL-20261113-020"
+      },
+      "partitions": [
+        {
+          "areaMu": 9.6,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 18.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z01.geojson",
+          "partitionNo": "Z01",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "heavy",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 21.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z02.geojson",
+          "partitionNo": "Z02",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "medium",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.62,
+          "explainability": {
+            "ndviDeviation": {
+              "baselineId": "BL-COTTON-FLOWER-2026",
+              "baselineVersion": "BL-COTTON-FLOWER-2026@v2",
+              "method": "分区均值与同物候期健康基线差值",
+              "value": -0.06
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z03.geojson",
+          "partitionNo": "Z03",
+          "review": {
+            "status": "pending"
+          },
+          "stressLevel": "light",
+          "stressType": "undetermined",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.91,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 28.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z04.geojson",
+          "partitionNo": "Z04",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "light",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.92,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 32.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z05.geojson",
+          "partitionNo": "Z05",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.93,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 35.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z06.geojson",
+          "partitionNo": "Z06",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.94,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 39.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z07.geojson",
+          "partitionNo": "Z07",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 42.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z08.geojson",
+          "partitionNo": "Z08",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 46.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z09.geojson",
+          "partitionNo": "Z09",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 9.6,
+          "confidence": 0.9,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 49.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0913/Z10.geojson",
+          "partitionNo": "Z10",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉铃虫",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        }
+      ],
+      "recognitionMeta": {
+        "dataIntegrity": "complete",
+        "durationSec": 240
+      },
+      "resultNo": "SR-20261113-0001-v1",
+      "resultVersion": 1,
+      "schemaVersion": "1.0",
+      "taskBlock": {
+        "blockingPartitions": [
+          "Z03"
+        ],
+        "reasonCodes": [
+          "LOW_CONFIDENCE"
+        ],
+        "status": "blocked_pending_review"
+      },
+      "taskNo": "PT-20261113-0001"
+    }
+  ],
+  "workOrders": []
+}

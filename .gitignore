@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+python3.12.3/
+
+# 环境与密钥
+.env
+data/
+*.jsonl
+
+# 系统
+.DS_Store
+
+# IDE / AI 工具（全部排除）
+.codeartsdoer/
+.arts/
+.dsh-office-*/
+.workbuddy/
+.workbuddy-ai/
+.merkle-snapshot.json
+Claw/
+
+# 大型二进制与压缩包
+*.iso
+*.zip
+video_build/
+
+# 提交包与应急包（独立仓库或本地）
+提交上传/
+比赛应急包/
+*.zip
+
+# PPT 源与构建目录（保留成品 pptx 如需提交）
+ppt/
+ppt_v2/
+_pptx_orig_*.pptx
+
+# 演示视频（太大，保留 mp4 如需提交）
+*.mp4
+*.wav
+*.mp3
+*.webm
+
+# CodeArts temp
+.temp/
+.accept/
+
+# 其他
+output/

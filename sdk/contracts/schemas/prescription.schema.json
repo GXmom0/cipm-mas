@@ -1,0 +1,738 @@
+{
+  "$defs": {
+    "CompoundAction": {
+      "enum": [
+        "none",
+        "intercepted_to_expert"
+      ],
+      "title": "CompoundAction",
+      "type": "string"
+    },
+    "CompoundComponentRef": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "品类 {aiName, formulation}",
+          "title": "Category",
+          "type": "object"
+        },
+        "registryItemNo": {
+          "description": "目录项编号",
+          "minLength": 1,
+          "title": "Registryitemno",
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "registryItemNo"
+      ],
+      "title": "CompoundComponentRef",
+      "type": "object"
+    },
+    "CompoundGuard": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/CompoundAction",
+          "description": "处置动作"
+        },
+        "components": {
+          "description": "检测到的组分",
+          "items": {
+            "$ref": "#/$defs/CompoundComponentRef"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "detected": {
+          "description": "是否检测到复配",
+          "title": "Detected",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "detected",
+        "action"
+      ],
+      "title": "CompoundGuard",
+      "type": "object"
+    },
+    "ConflictProduct": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Category",
+          "type": "object"
+        },
+        "registryItemNo": {
+          "minLength": 1,
+          "title": "Registryitemno",
+          "type": "string"
+        }
+      },
+      "required": [
+        "registryItemNo",
+        "category"
+      ],
+      "title": "ConflictProduct",
+      "type": "object"
+    },
+    "DegradeReason": {
+      "enum": [
+        "BUFFER_LT_3",
+        "ROTATION_INTERVAL",
+        "PRE_HARVEST_SENSITIVE",
+        "PHENOLOGY_LOW_RISK"
+      ],
+      "title": "DegradeReason",
+      "type": "string"
+    },
+    "DosageTruncation": {
+      "additionalProperties": false,
+      "properties": {
+        "applied": {
+          "title": "Applied",
+          "type": "boolean"
+        },
+        "finalValue": {
+          "exclusiveMinimum": 0,
+          "title": "Finalvalue",
+          "type": "number"
+        },
+        "originalValue": {
+          "exclusiveMinimum": 0,
+          "title": "Originalvalue",
+          "type": "number"
+        },
+        "reason": {
+          "enum": [
+            "below_min",
+            "above_max"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "applied",
+        "reason",
+        "originalValue",
+        "finalValue"
+      ],
+      "title": "DosageTruncation",
+      "type": "object"
+    },
+    "EvidenceRefs": {
+      "additionalProperties": false,
+      "properties": {
+        "baselineVersion": {
+          "title": "Baselineversion",
+          "type": "string"
+        },
+        "historyPrescriptionRef": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Historyprescriptionref"
+        },
+        "kbRefs": {
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "title": "Kbrefs",
+          "type": "array"
+        },
+        "thresholdVersion": {
+          "title": "Thresholdversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "thresholdVersion",
+        "baselineVersion"
+      ],
+      "title": "EvidenceRefs",
+      "type": "object"
+    },
+    "MandatoryNotice": {
+      "additionalProperties": false,
+      "properties": {
+        "ackRequired": {
+          "default": true,
+          "title": "Ackrequired",
+          "type": "boolean"
+        },
+        "code": {
+          "const": "DRIFT_GUARD_SOUTH",
+          "title": "Code",
+          "type": "string"
+        },
+        "measures": {
+          "description": "防漂移四项措施",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "title": "Measures",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "measures"
+      ],
+      "title": "MandatoryNotice",
+      "type": "object"
+    },
+    "PrescriptionProduct": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "{aiName, formulation}，V1.0 每分区仅一个品类",
+          "title": "Category",
+          "type": "object"
+        },
+        "registrationNo": {
+          "description": "新疆现行登记证号",
+          "minLength": 1,
+          "title": "Registrationno",
+          "type": "string"
+        },
+        "registryItemNo": {
+          "minLength": 1,
+          "title": "Registryitemno",
+          "type": "string"
+        },
+        "registryVersion": {
+          "minLength": 1,
+          "title": "Registryversion",
+          "type": "string"
+        },
+        "toxicity": {
+          "$ref": "#/$defs/Toxicity"
+        }
+      },
+      "required": [
+        "registryItemNo",
+        "registryVersion",
+        "category",
+        "registrationNo",
+        "toxicity"
+      ],
+      "title": "PrescriptionProduct",
+      "type": "object"
+    },
+    "PrescriptionStatus": {
+      "enum": [
+        "draft",
+        "pending_window",
+        "degraded_pending_confirm",
+        "pending_review",
+        "approved",
+        "rejected",
+        "refused"
+      ],
+      "title": "PrescriptionStatus",
+      "type": "string"
+    },
+    "PrescriptionZone": {
+      "additionalProperties": false,
+      "properties": {
+        "dilutionRatio": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "稀释浓度，倍液",
+          "title": "Dilutionratio"
+        },
+        "doseMlPerMu": {
+          "description": "制剂亩用量，毫升/亩",
+          "minimum": 0,
+          "title": "Dosemlpermu",
+          "type": "number"
+        },
+        "doseTruncation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DosageTruncation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "product": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PrescriptionProduct"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "safetyIntervalDays": {
+          "anyOf": [
+            {
+              "maximum": 30,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Safetyintervaldays"
+        },
+        "seasonUsageBefore": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Seasonusagebefore",
+          "type": "integer"
+        },
+        "sprayVolumeLPerMu": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "喷液量，升/亩",
+          "title": "Sprayvolumelpermu"
+        },
+        "volumeCorrection": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VolumeCorrection"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "zeroApplication": {
+          "description": "stressLevel=none 时必须为 true",
+          "title": "Zeroapplication",
+          "type": "boolean"
+        },
+        "zoneNo": {
+          "description": "与识别结果分区编号一致",
+          "minLength": 1,
+          "title": "Zoneno",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zoneNo",
+        "zeroApplication",
+        "doseMlPerMu"
+      ],
+      "title": "PrescriptionZone",
+      "type": "object"
+    },
+    "RegistrySnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "degraded": {
+          "default": false,
+          "description": "是否使用降级快照",
+          "title": "Degraded",
+          "type": "boolean"
+        },
+        "syncedAt": {
+          "description": "目录同步时间，带 +08:00",
+          "title": "Syncedat",
+          "type": "string"
+        },
+        "version": {
+          "description": "登记用药目录整体版本",
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "syncedAt"
+      ],
+      "title": "RegistrySnapshot",
+      "type": "object"
+    },
+    "ReviewEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "afterLevel": {
+          "title": "Afterlevel",
+          "type": "string"
+        },
+        "beforeLevel": {
+          "title": "Beforelevel",
+          "type": "string"
+        },
+        "conclusion": {
+          "title": "Conclusion",
+          "type": "string"
+        },
+        "partitionNo": {
+          "title": "Partitionno",
+          "type": "string"
+        },
+        "reviewedAt": {
+          "title": "Reviewedat",
+          "type": "string"
+        },
+        "reviewer": {
+          "title": "Reviewer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reviewer",
+        "reviewedAt",
+        "partitionNo",
+        "beforeLevel",
+        "afterLevel",
+        "conclusion"
+      ],
+      "title": "ReviewEvidence",
+      "type": "object"
+    },
+    "SafetyAlternative": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Category",
+          "type": "object"
+        },
+        "doseRange": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "title": "Doserange",
+          "type": "array"
+        },
+        "registryItemNo": {
+          "minLength": 1,
+          "title": "Registryitemno",
+          "type": "string"
+        },
+        "safetyIntervalDays": {
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Safetyintervaldays",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "registryItemNo",
+        "category",
+        "safetyIntervalDays",
+        "doseRange"
+      ],
+      "title": "SafetyAlternative",
+      "type": "object"
+    },
+    "SafetyCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "alternatives": {
+          "description": "可选替代，拒绝时可供重开处方",
+          "items": {
+            "$ref": "#/$defs/SafetyAlternative"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "bufferDays": {
+          "description": "R − S，可为负",
+          "title": "Bufferdays",
+          "type": "integer"
+        },
+        "conclusion": {
+          "$ref": "#/$defs/SafetyConclusion",
+          "description": "安全间隔结论"
+        },
+        "conflictProduct": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ConflictProduct"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "拒绝时的冲突药剂"
+        },
+        "degradeReasons": {
+          "description": "降级原因",
+          "items": {
+            "$ref": "#/$defs/DegradeReason"
+          },
+          "title": "Degradereasons",
+          "type": "array"
+        },
+        "remainingDays": {
+          "description": "采收剩余天数 R",
+          "minimum": 0,
+          "title": "Remainingdays",
+          "type": "integer"
+        },
+        "safetyIntervalDays": {
+          "description": "安全间隔期 S",
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Safetyintervaldays",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "conclusion",
+        "remainingDays",
+        "safetyIntervalDays",
+        "bufferDays"
+      ],
+      "title": "SafetyCheck",
+      "type": "object"
+    },
+    "SafetyConclusion": {
+      "enum": [
+        "satisfied",
+        "degraded",
+        "refused"
+      ],
+      "title": "SafetyConclusion",
+      "type": "string"
+    },
+    "Toxicity": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Toxicity",
+      "type": "string"
+    },
+    "VolumeCorrection": {
+      "additionalProperties": false,
+      "properties": {
+        "applied": {
+          "title": "Applied",
+          "type": "boolean"
+        },
+        "finalValue": {
+          "exclusiveMinimum": 0,
+          "title": "Finalvalue",
+          "type": "number"
+        },
+        "originalValue": {
+          "exclusiveMinimum": 0,
+          "title": "Originalvalue",
+          "type": "number"
+        },
+        "reason": {
+          "enum": [
+            "drip_midpoint",
+            "device_max"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "applied",
+        "reason",
+        "originalValue",
+        "finalValue"
+      ],
+      "title": "VolumeCorrection",
+      "type": "object"
+    },
+    "WindowCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "candidateWindows": {
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "title": "Candidatewindows",
+          "type": "array"
+        },
+        "checkNo": {
+          "description": "决策阶段校验编号",
+          "pattern": "^WC-D-[0-9A-Za-z\\-]+$",
+          "title": "Checkno",
+          "type": "string"
+        },
+        "conclusion": {
+          "enum": [
+            "pass",
+            "pass_with_mandatory_notice",
+            "fail"
+          ],
+          "title": "Conclusion",
+          "type": "string"
+        },
+        "mandatoryNotices": {
+          "items": {
+            "$ref": "#/$defs/MandatoryNotice"
+          },
+          "title": "Mandatorynotices",
+          "type": "array"
+        },
+        "parentCheckNo": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parentcheckno"
+        },
+        "thresholdVersion": {
+          "minLength": 1,
+          "title": "Thresholdversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkNo",
+        "conclusion",
+        "thresholdVersion"
+      ],
+      "title": "WindowCheck",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "compoundGuard": {
+      "$ref": "#/$defs/CompoundGuard"
+    },
+    "evidenceRefs": {
+      "$ref": "#/$defs/EvidenceRefs"
+    },
+    "prescriptionNo": {
+      "minLength": 1,
+      "title": "Prescriptionno",
+      "type": "string"
+    },
+    "prescriptionVersion": {
+      "minimum": 1,
+      "title": "Prescriptionversion",
+      "type": "integer"
+    },
+    "registrySnapshot": {
+      "$ref": "#/$defs/RegistrySnapshot"
+    },
+    "resultNo": {
+      "minLength": 1,
+      "title": "Resultno",
+      "type": "string"
+    },
+    "resultVersion": {
+      "minimum": 1,
+      "title": "Resultversion",
+      "type": "integer"
+    },
+    "reviewEvidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewEvidence"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "safetyCheck": {
+      "$ref": "#/$defs/SafetyCheck"
+    },
+    "schemaVersion": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/PrescriptionStatus"
+    },
+    "taskNo": {
+      "minLength": 1,
+      "title": "Taskno",
+      "type": "string"
+    },
+    "windowCheck": {
+      "$ref": "#/$defs/WindowCheck"
+    },
+    "zones": {
+      "items": {
+        "$ref": "#/$defs/PrescriptionZone"
+      },
+      "title": "Zones",
+      "type": "array"
+    }
+  },
+  "required": [
+    "prescriptionNo",
+    "prescriptionVersion",
+    "taskNo",
+    "resultNo",
+    "resultVersion",
+    "status",
+    "registrySnapshot",
+    "compoundGuard",
+    "safetyCheck",
+    "windowCheck",
+    "evidenceRefs"
+  ],
+  "title": "PrescriptionPayload",
+  "type": "object"
+}

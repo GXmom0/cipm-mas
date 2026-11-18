@@ -1,0 +1,16 @@
+venv/
+python3.12.3/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.git/
+.codeartsdoer/
+data/
+output/
+Claw/
+tests/
+*.jsonl
+*.log
+.env
+.DS_Store

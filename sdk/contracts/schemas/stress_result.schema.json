@@ -1,0 +1,547 @@
+{
+  "$defs": {
+    "BlockStatus": {
+      "enum": [
+        "unblocked",
+        "blocked_pending_review",
+        "released"
+      ],
+      "title": "BlockStatus",
+      "type": "string"
+    },
+    "DataIntegrity": {
+      "enum": [
+        "complete",
+        "partial_missing",
+        "unavailable"
+      ],
+      "title": "DataIntegrity",
+      "type": "string"
+    },
+    "EvidenceItem": {
+      "additionalProperties": false,
+      "properties": {
+        "refId": {
+          "description": "证据编号",
+          "title": "Refid",
+          "type": "string"
+        },
+        "type": {
+          "description": "证据类型，如 threshold / baseline",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "证据版本",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "refId",
+        "version"
+      ],
+      "title": "EvidenceItem",
+      "type": "object"
+    },
+    "Explainability": {
+      "additionalProperties": false,
+      "properties": {
+        "ndviDeviation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NdviDeviation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "NDVI 偏离证据"
+        },
+        "pestDensity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PestDensity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "虫口密度证据"
+        }
+      },
+      "title": "Explainability",
+      "type": "object"
+    },
+    "NdviDeviation": {
+      "additionalProperties": false,
+      "properties": {
+        "baselineId": {
+          "description": "健康基线编号",
+          "title": "Baselineid",
+          "type": "string"
+        },
+        "baselineVersion": {
+          "description": "健康基线版本",
+          "title": "Baselineversion",
+          "type": "string"
+        },
+        "method": {
+          "description": "计算方法说明",
+          "title": "Method",
+          "type": "string"
+        },
+        "value": {
+          "description": "分区 NDVI 均值与同物候期健康基线的差值",
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "value",
+        "baselineId",
+        "baselineVersion",
+        "method"
+      ],
+      "title": "NdviDeviation",
+      "type": "object"
+    },
+    "OrthophotoMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "bands": {
+          "description": "波段清单",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "title": "Bands",
+          "type": "array"
+        },
+        "cloudPct": {
+          "description": "云量百分比",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Cloudpct",
+          "type": "number"
+        },
+        "coverRatio": {
+          "description": "地块覆盖率",
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "title": "Coverratio",
+          "type": "number"
+        },
+        "gsdCm": {
+          "description": "地面分辨率（厘米）",
+          "exclusiveMinimum": 0,
+          "maximum": 5,
+          "title": "Gsdcm",
+          "type": "number"
+        },
+        "productVersion": {
+          "description": "影像平台产品版本",
+          "minLength": 1,
+          "title": "Productversion",
+          "type": "string"
+        },
+        "readyTime": {
+          "description": "正射影像产品就绪时刻，带 +08:00",
+          "title": "Readytime",
+          "type": "string"
+        },
+        "sortieNo": {
+          "description": "架次编号",
+          "minLength": 1,
+          "title": "Sortieno",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sortieNo",
+        "readyTime",
+        "bands",
+        "gsdCm",
+        "cloudPct",
+        "coverRatio",
+        "productVersion"
+      ],
+      "title": "OrthophotoMeta",
+      "type": "object"
+    },
+    "PartitionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "areaMu": {
+          "description": "分区面积（亩）",
+          "exclusiveMinimum": 0,
+          "title": "Areamu",
+          "type": "number"
+        },
+        "confidence": {
+          "description": "识别置信度",
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "explainability": {
+          "$ref": "#/$defs/Explainability",
+          "description": "可解释指标，至少一项"
+        },
+        "frozen": {
+          "default": false,
+          "description": "被处方引用后必须为 true",
+          "title": "Frozen",
+          "type": "boolean"
+        },
+        "geometryRef": {
+          "description": "分区几何快照 OBS 引用",
+          "title": "Geometryref",
+          "type": "string"
+        },
+        "partitionNo": {
+          "description": "分区编号",
+          "minLength": 1,
+          "title": "Partitionno",
+          "type": "string"
+        },
+        "review": {
+          "$ref": "#/$defs/ReviewInfo",
+          "description": "复核状态"
+        },
+        "stressLevel": {
+          "$ref": "#/$defs/StressLevel",
+          "description": "胁迫等级，四档"
+        },
+        "stressType": {
+          "$ref": "#/$defs/StressType",
+          "description": "胁迫类型"
+        },
+        "targetPest": {
+          "default": "",
+          "description": "目标害虫具体名称，如棉蚜；空表示未识别到具体害虫",
+          "title": "Targetpest",
+          "type": "string"
+        },
+        "thresholdRef": {
+          "$ref": "#/$defs/ThresholdRef",
+          "description": "阈值引用"
+        }
+      },
+      "required": [
+        "partitionNo",
+        "areaMu",
+        "geometryRef",
+        "stressType",
+        "stressLevel",
+        "confidence",
+        "explainability",
+        "thresholdRef",
+        "review"
+      ],
+      "title": "PartitionResult",
+      "type": "object"
+    },
+    "PestDensity": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "description": "推算依据",
+          "title": "Basis",
+          "type": "string"
+        },
+        "unit": {
+          "const": "头/百株",
+          "description": "固定单位：头/百株",
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "description": "虫口密度推算值",
+          "minimum": 0,
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "value",
+        "unit",
+        "basis"
+      ],
+      "title": "PestDensity",
+      "type": "object"
+    },
+    "RecognitionMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "dataIntegrity": {
+          "$ref": "#/$defs/DataIntegrity",
+          "description": "数据完整性"
+        },
+        "degraded": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "降级标识",
+          "title": "Degraded"
+        },
+        "durationSec": {
+          "description": "识别耗时，从正射影像就绪起算，≤600 秒",
+          "exclusiveMinimum": 0,
+          "maximum": 600,
+          "title": "Durationsec",
+          "type": "number"
+        }
+      },
+      "required": [
+        "durationSec",
+        "dataIntegrity"
+      ],
+      "title": "RecognitionMeta",
+      "type": "object"
+    },
+    "ReviewInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "afterLevel": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StressLevel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "改判后等级"
+        },
+        "beforeLevel": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StressLevel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "改判前等级"
+        },
+        "conclusion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "复核结论说明",
+          "title": "Conclusion"
+        },
+        "reviewedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "复核时间，ISO8601 带 +08:00",
+          "title": "Reviewedat"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "复核人",
+          "title": "Reviewer"
+        },
+        "status": {
+          "$ref": "#/$defs/ReviewStatus",
+          "description": "复核状态"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "ReviewInfo",
+      "type": "object"
+    },
+    "ReviewStatus": {
+      "enum": [
+        "none_required",
+        "pending",
+        "confirmed",
+        "overridden",
+        "undetermined"
+      ],
+      "title": "ReviewStatus",
+      "type": "string"
+    },
+    "StressLevel": {
+      "enum": [
+        "none",
+        "light",
+        "medium",
+        "heavy"
+      ],
+      "title": "StressLevel",
+      "type": "string"
+    },
+    "StressType": {
+      "enum": [
+        "pest_disease",
+        "nutrient_deficiency",
+        "drought",
+        "waterlogging",
+        "undetermined"
+      ],
+      "title": "StressType",
+      "type": "string"
+    },
+    "TaskBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "blockingPartitions": {
+          "description": "触发阻断的分区编号",
+          "items": {
+            "type": "string"
+          },
+          "title": "Blockingpartitions",
+          "type": "array"
+        },
+        "reasonCodes": {
+          "description": "阻断原因码",
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasoncodes",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/BlockStatus",
+          "description": "任务阻断状态"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "TaskBlock",
+      "type": "object"
+    },
+    "ThresholdRef": {
+      "additionalProperties": false,
+      "properties": {
+        "entryId": {
+          "description": "防治阈值条目编号",
+          "title": "Entryid",
+          "type": "string"
+        },
+        "version": {
+          "description": "阈值版本",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entryId",
+        "version"
+      ],
+      "title": "ThresholdRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "evidence": {
+      "description": "可回放证据，至少一条",
+      "items": {
+        "$ref": "#/$defs/EvidenceItem"
+      },
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "orthophoto": {
+      "$ref": "#/$defs/OrthophotoMeta",
+      "description": "正射影像产品元数据"
+    },
+    "partitions": {
+      "description": "分区识别结果",
+      "items": {
+        "$ref": "#/$defs/PartitionResult"
+      },
+      "minItems": 1,
+      "title": "Partitions",
+      "type": "array"
+    },
+    "recognitionMeta": {
+      "$ref": "#/$defs/RecognitionMeta",
+      "description": "识别元数据"
+    },
+    "resultNo": {
+      "description": "识别结果编号",
+      "minLength": 1,
+      "title": "Resultno",
+      "type": "string"
+    },
+    "resultVersion": {
+      "description": "结果版本，递增不可回退",
+      "minimum": 1,
+      "title": "Resultversion",
+      "type": "integer"
+    },
+    "schemaVersion": {
+      "const": "1.0",
+      "default": "1.0",
+      "description": "契约版本",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "taskBlock": {
+      "$ref": "#/$defs/TaskBlock",
+      "description": "任务阻断信息"
+    },
+    "taskNo": {
+      "description": "巡田任务编号",
+      "minLength": 1,
+      "title": "Taskno",
+      "type": "string"
+    }
+  },
+  "required": [
+    "taskNo",
+    "resultNo",
+    "resultVersion",
+    "orthophoto",
+    "taskBlock",
+    "partitions",
+    "recognitionMeta",
+    "evidence"
+  ],
+  "title": "StressResultPayload",
+  "type": "object"
+}

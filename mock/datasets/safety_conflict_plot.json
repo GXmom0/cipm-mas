@@ -1,0 +1,998 @@
+{
+  "calendar": {
+    "PLOT-0914": {
+      "expectedHarvestDate": "2026-11-19",
+      "phenology": "flower_boll",
+      "remainingDays": 5,
+      "version": "CAL-2026.11",
+      "windowCloseInDays": 1
+    },
+    "PLOT-0916": {
+      "expectedHarvestDate": "2026-12-14",
+      "phenology": "boll_opening",
+      "remainingDays": 30,
+      "version": "CAL-2026.11",
+      "windowCloseInDays": 10
+    }
+  },
+  "dashboard": {
+    "alerts": [
+      {
+        "level": "error",
+        "plotNo": "PLOT-0914",
+        "text": "距采收 5 天短于安全间隔期 7 天，禁止施药"
+      },
+      {
+        "level": "warning",
+        "plotNo": "PLOT-0916",
+        "text": "执行前窗口最低温 11.8℃ 低于 12.5℃ 红线"
+      }
+    ],
+    "plots": [
+      {
+        "areaMu": 64.0,
+        "badges": [
+          "REFUSED"
+        ],
+        "farmName": "呼图壁棉花示范农场",
+        "farmNo": "FARM-XJ-HT-01",
+        "plotName": "阿克苏示范田-南支",
+        "plotNo": "PLOT-0914",
+        "stages": {
+          "assessment": "未开始",
+          "execution": "不可下发",
+          "patrol": "已完成",
+          "prescription": "已拒绝"
+        },
+        "updatedAt": "2026-11-13T08:05:00+08:00"
+      },
+      {
+        "areaMu": 72.0,
+        "badges": [
+          "RESCHEDULED"
+        ],
+        "farmName": "呼图壁棉花示范农场",
+        "farmNo": "FARM-XJ-HT-01",
+        "plotName": "阿克苏示范田-北支",
+        "plotNo": "PLOT-0916",
+        "stages": {
+          "assessment": "未开始",
+          "execution": "待重新排期",
+          "patrol": "已完成",
+          "prescription": "已通过"
+        },
+        "updatedAt": "2026-11-13T08:05:00+08:00"
+      }
+    ],
+    "snapshotAt": "2026-11-13T08:05:00+08:00",
+    "todos": [
+      {
+        "plotNo": "PLOT-0914",
+        "text": "安全间隔冲突，需重新制定处方",
+        "type": "replan"
+      },
+      {
+        "plotNo": "PLOT-0916",
+        "text": "作业窗口温度不通过，待重新排期",
+        "type": "reschedule"
+      }
+    ]
+  },
+  "datasetVersion": "2026.11.13",
+  "description": "R=5、S=7 触发拒绝；另一地块因执行前窗口温度不通过进入待重新排期。",
+  "dispatchCommands": [],
+  "expected": {
+    "PLOT-0914": {
+      "bufferDays": -2,
+      "conclusion": "refused",
+      "conflictProduct": "啶虫脒·乳油",
+      "remainingDays": 5,
+      "safetyIntervalDays": 7
+    },
+    "PLOT-0916": {
+      "prescriptionStatus": "approved",
+      "windowVerdict": "fail",
+      "workOrderStatus": "rescheduled"
+    }
+  },
+  "farm": {
+    "farmNo": "FARM-XJ-HT-01",
+    "name": "呼图壁棉花示范农场",
+    "region": "south"
+  },
+  "plots": [
+    {
+      "areaMu": 64.0,
+      "expectedHarvestDate": "2026-11-19",
+      "irrigation": "drip",
+      "owner": "示范农场一组",
+      "phenology": "flower_boll",
+      "plotName": "阿克苏示范田-南支",
+      "plotNo": "PLOT-0914",
+      "region": "south",
+      "variety": "新陆早 57 号"
+    },
+    {
+      "areaMu": 72.0,
+      "expectedHarvestDate": "2026-12-14",
+      "irrigation": "drip",
+      "owner": "示范农场一组",
+      "phenology": "boll_opening",
+      "plotName": "阿克苏示范田-北支",
+      "plotNo": "PLOT-0916",
+      "region": "south",
+      "variety": "新陆早 57 号"
+    }
+  ],
+  "prescriptions": [
+    {
+      "compoundGuard": {
+        "action": "none",
+        "components": [],
+        "detected": false
+      },
+      "evidenceRefs": {
+        "baselineVersion": "BL-COTTON-FLOWER-2026@v2",
+        "historyPrescriptionRef": null,
+        "kbRefs": [
+          {
+            "entryId": "KB-PRESC-HIST-PLOT-0914",
+            "version": "v1"
+          }
+        ],
+        "thresholdVersion": "TH-APHID-2026@v1"
+      },
+      "prescriptionNo": "RX-20261113-0001",
+      "prescriptionVersion": 1,
+      "registrySnapshot": {
+        "degraded": false,
+        "syncedAt": "2026-11-13T08:00:00+08:00",
+        "version": "XJ-REG-2026.11.01"
+      },
+      "resultNo": "SR-20261113-0001-v1",
+      "resultVersion": 1,
+      "safetyCheck": {
+        "alternatives": [
+          {
+            "category": {
+              "aiName": "吡虫啉",
+              "formulation": "可湿性粉剂"
+            },
+            "doseRange": [
+              8.0,
+              16.0
+            ],
+            "registryItemNo": "XJ-IMI-0453",
+            "safetyIntervalDays": 5
+          }
+        ],
+        "bufferDays": -2,
+        "conclusion": "refused",
+        "conflictProduct": {
+          "category": {
+            "aiName": "啶虫脒",
+            "formulation": "乳油"
+          },
+          "registryItemNo": "XJ-ACE-0381"
+        },
+        "degradeReasons": [],
+        "remainingDays": 5,
+        "safetyIntervalDays": 7
+      },
+      "schemaVersion": "1.0",
+      "status": "refused",
+      "taskNo": "PT-20261113-0001",
+      "windowCheck": {
+        "candidateWindows": [],
+        "checkNo": "WC-D-20261113-0001",
+        "conclusion": "pass",
+        "mandatoryNotices": [],
+        "parentCheckNo": null,
+        "thresholdVersion": "XJ-WIN-THR-2026.04"
+      },
+      "zones": [
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z01"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z02"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z03"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z04"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z05"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z06"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z07"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z08"
+        }
+      ]
+    },
+    {
+      "compoundGuard": {
+        "action": "none",
+        "components": [],
+        "detected": false
+      },
+      "evidenceRefs": {
+        "baselineVersion": "BL-COTTON-FLOWER-2026@v2",
+        "historyPrescriptionRef": null,
+        "kbRefs": [
+          {
+            "entryId": "KB-PRESC-HIST-PLOT-0916",
+            "version": "v1"
+          }
+        ],
+        "thresholdVersion": "TH-APHID-2026@v1"
+      },
+      "prescriptionNo": "RX-20261113-0002",
+      "prescriptionVersion": 1,
+      "registrySnapshot": {
+        "degraded": false,
+        "syncedAt": "2026-11-13T08:00:00+08:00",
+        "version": "XJ-REG-2026.11.01"
+      },
+      "resultNo": "SR-20261113-0002-v1",
+      "resultVersion": 1,
+      "safetyCheck": {
+        "alternatives": [
+          {
+            "category": {
+              "aiName": "吡虫啉",
+              "formulation": "可湿性粉剂"
+            },
+            "doseRange": [
+              8.0,
+              16.0
+            ],
+            "registryItemNo": "XJ-IMI-0453",
+            "safetyIntervalDays": 5
+          }
+        ],
+        "bufferDays": 23,
+        "conclusion": "satisfied",
+        "conflictProduct": null,
+        "degradeReasons": [],
+        "remainingDays": 30,
+        "safetyIntervalDays": 7
+      },
+      "schemaVersion": "1.0",
+      "status": "approved",
+      "taskNo": "PT-20261113-0002",
+      "windowCheck": {
+        "candidateWindows": [],
+        "checkNo": "WC-D-20261113-0002",
+        "conclusion": "pass",
+        "mandatoryNotices": [],
+        "parentCheckNo": null,
+        "thresholdVersion": "XJ-WIN-THR-2026.04"
+      },
+      "zones": [
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z01"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z02"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z03"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z04"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z05"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z06"
+        }
+      ]
+    }
+  ],
+  "registry": [
+    {
+      "category": {
+        "aiName": "啶虫脒",
+        "formulation": "乳油"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        10.0,
+        20.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260381",
+      "registryItemNo": "XJ-ACE-0381",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 7,
+      "seasonUsageLimit": 3,
+      "sprayVolumeRangeLPerMu": [
+        1.2,
+        2.0
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "吡虫啉",
+        "formulation": "可湿性粉剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        8.0,
+        16.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260453",
+      "registryItemNo": "XJ-IMI-0453",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 5,
+      "seasonUsageLimit": 3,
+      "sprayVolumeRangeLPerMu": [
+        1.0,
+        1.8
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "阿维菌素",
+        "formulation": "悬浮剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        6.0,
+        12.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260219",
+      "registryItemNo": "XJ-ABM-0219",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 10,
+      "seasonUsageLimit": 2,
+      "sprayVolumeRangeLPerMu": [
+        1.0,
+        1.6
+      ],
+      "target": "pest_disease",
+      "toxicity": "medium",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "联苯·噻虫嗪",
+        "formulation": "悬浮剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        20.0,
+        40.0
+      ],
+      "formulationType": "mixture_registered",
+      "registrationNo": "PD20260777",
+      "registryItemNo": "XJ-MIX-0777",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 14,
+      "seasonUsageLimit": 2,
+      "sprayVolumeRangeLPerMu": [
+        1.2,
+        1.8
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    }
+  ],
+  "scenarioId": "safety_conflict_plot",
+  "scenarioName": "安全间隔冲突与作业窗口重排地块",
+  "schemaVersion": "1.0",
+  "seed": 20261113,
+  "stressResults": [
+    {
+      "evidence": [
+        {
+          "refId": "TH-APHID-2026",
+          "type": "threshold",
+          "version": "v1"
+        },
+        {
+          "refId": "BL-COTTON-FLOWER-2026",
+          "type": "baseline",
+          "version": "BL-COTTON-FLOWER-2026@v2"
+        }
+      ],
+      "orthophoto": {
+        "bands": [
+          "NIR",
+          "RED",
+          "GREEN"
+        ],
+        "cloudPct": 4.0,
+        "coverRatio": 1.0,
+        "gsdCm": 3.2,
+        "productVersion": "ortho-2026.11.13-020",
+        "readyTime": "2026-11-13T08:00:00+08:00",
+        "sortieNo": "FL-20261113-020"
+      },
+      "partitions": [
+        {
+          "areaMu": 8.0,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 18.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z01.geojson",
+          "partitionNo": "Z01",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "heavy",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 21.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z02.geojson",
+          "partitionNo": "Z02",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.9,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 25.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z03.geojson",
+          "partitionNo": "Z03",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.91,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 28.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z04.geojson",
+          "partitionNo": "Z04",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.92,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 32.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z05.geojson",
+          "partitionNo": "Z05",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.93,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 35.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z06.geojson",
+          "partitionNo": "Z06",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.94,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 39.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z07.geojson",
+          "partitionNo": "Z07",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.0,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 42.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0914/Z08.geojson",
+          "partitionNo": "Z08",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉叶螨",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        }
+      ],
+      "recognitionMeta": {
+        "dataIntegrity": "complete",
+        "durationSec": 240
+      },
+      "resultNo": "SR-20261113-0001-v1",
+      "resultVersion": 1,
+      "schemaVersion": "1.0",
+      "taskBlock": {
+        "blockingPartitions": [],
+        "reasonCodes": [],
+        "status": "unblocked"
+      },
+      "taskNo": "PT-20261113-0001"
+    },
+    {
+      "evidence": [
+        {
+          "refId": "TH-APHID-2026",
+          "type": "threshold",
+          "version": "v1"
+        },
+        {
+          "refId": "BL-COTTON-FLOWER-2026",
+          "type": "baseline",
+          "version": "BL-COTTON-FLOWER-2026@v2"
+        }
+      ],
+      "orthophoto": {
+        "bands": [
+          "NIR",
+          "RED",
+          "GREEN"
+        ],
+        "cloudPct": 4.0,
+        "coverRatio": 1.0,
+        "gsdCm": 3.2,
+        "productVersion": "ortho-2026.11.13-021",
+        "readyTime": "2026-11-13T08:00:00+08:00",
+        "sortieNo": "FL-20261113-021"
+      },
+      "partitions": [
+        {
+          "areaMu": 12.0,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 18.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0916/Z01.geojson",
+          "partitionNo": "Z01",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "heavy",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 12.0,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 21.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0916/Z02.geojson",
+          "partitionNo": "Z02",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "medium",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 12.0,
+          "confidence": 0.9,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 25.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0916/Z03.geojson",
+          "partitionNo": "Z03",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "light",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 12.0,
+          "confidence": 0.91,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 28.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0916/Z04.geojson",
+          "partitionNo": "Z04",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 12.0,
+          "confidence": 0.92,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 32.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0916/Z05.geojson",
+          "partitionNo": "Z05",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 12.0,
+          "confidence": 0.93,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 35.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0916/Z06.geojson",
+          "partitionNo": "Z06",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        }
+      ],
+      "recognitionMeta": {
+        "dataIntegrity": "complete",
+        "durationSec": 247
+      },
+      "resultNo": "SR-20261113-0002-v1",
+      "resultVersion": 1,
+      "schemaVersion": "1.0",
+      "taskBlock": {
+        "blockingPartitions": [],
+        "reasonCodes": [],
+        "status": "unblocked"
+      },
+      "taskNo": "PT-20261113-0002"
+    }
+  ],
+  "workOrders": [
+    {
+      "plotNo": "PLOT-0916",
+      "prescriptionNo": "RX-20261113-0002",
+      "reason": "执行前窗口最低温 11.8℃ 低于 12.5℃，转待重新排期",
+      "status": "rescheduled",
+      "windowCheckRef": {
+        "checkNo": "WC-E-20261113-0011",
+        "parentCheckNo": "WC-D-20261113-0002",
+        "thresholdVersion": "XJ-WIN-THR-2026.04",
+        "verdict": "fail"
+      },
+      "workOrderNo": "WO-20261113-0002"
+    }
+  ]
+}

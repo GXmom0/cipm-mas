@@ -1,0 +1,77 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "agentRunId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "AgentArts 单次运行标识",
+      "title": "Agentrunid"
+    },
+    "bizId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "业务主键，如作业单号",
+      "title": "Bizid"
+    },
+    "code": {
+      "default": "OK",
+      "description": "业务码，成功为 OK，失败为 CIPM-<DOMAIN>-<NNNN>",
+      "title": "Code",
+      "type": "string"
+    },
+    "data": {
+      "anyOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "业务载荷",
+      "title": "Data"
+    },
+    "message": {
+      "default": "成功",
+      "description": "面向用户的中文提示",
+      "title": "Message",
+      "type": "string"
+    },
+    "retryable": {
+      "default": false,
+      "description": "是否可重试，由错误码表决定",
+      "title": "Retryable",
+      "type": "boolean"
+    },
+    "timestamp": {
+      "description": "ISO8601 时间，必须带 +08:00",
+      "title": "Timestamp",
+      "type": "string"
+    },
+    "traceId": {
+      "description": "32 位小写十六进制链路号",
+      "pattern": "^[0-9a-f]{32}$",
+      "title": "Traceid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "traceId",
+    "timestamp"
+  ],
+  "title": "Envelope",
+  "type": "object"
+}

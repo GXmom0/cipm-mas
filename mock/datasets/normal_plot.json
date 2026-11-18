@@ -1,0 +1,1314 @@
+{
+  "calendar": {
+    "PLOT-0912": {
+      "expectedHarvestDate": "2026-12-04",
+      "phenology": "flower_boll",
+      "remainingDays": 20,
+      "version": "CAL-2026.11",
+      "windowCloseInDays": 6
+    },
+    "PLOT-0915": {
+      "expectedHarvestDate": "2026-11-23",
+      "phenology": "flower_boll",
+      "remainingDays": 9,
+      "version": "CAL-2026.11",
+      "windowCloseInDays": 3
+    }
+  },
+  "dashboard": {
+    "alerts": [],
+    "plots": [
+      {
+        "areaMu": 120.0,
+        "badges": [],
+        "farmName": "呼图壁棉花示范农场",
+        "farmNo": "FARM-XJ-HT-01",
+        "plotName": "呼图壁示范田-东区",
+        "plotNo": "PLOT-0912",
+        "stages": {
+          "assessment": "未开始",
+          "execution": "未开始",
+          "patrol": "已完成",
+          "prescription": "待审核"
+        },
+        "updatedAt": "2026-11-13T08:05:00+08:00"
+      },
+      {
+        "areaMu": 80.0,
+        "badges": [
+          "DEGRADED"
+        ],
+        "farmName": "呼图壁棉花示范农场",
+        "farmNo": "FARM-XJ-HT-01",
+        "plotName": "呼图壁示范田-西区",
+        "plotNo": "PLOT-0915",
+        "stages": {
+          "assessment": "未开始",
+          "execution": "未开始",
+          "patrol": "已完成",
+          "prescription": "降级待确认"
+        },
+        "updatedAt": "2026-11-13T08:05:00+08:00"
+      }
+    ],
+    "snapshotAt": "2026-11-13T08:05:00+08:00",
+    "todos": [
+      {
+        "plotNo": "PLOT-0912",
+        "text": "处方待农场管理者审核",
+        "type": "audit"
+      },
+      {
+        "plotNo": "PLOT-0915",
+        "text": "降级处方待农技专家确认",
+        "type": "confirm"
+      }
+    ]
+  },
+  "datasetVersion": "2026.11.13",
+  "description": "演示满足与降级两种安全间隔结论，处方可正常进入审核。",
+  "dispatchCommands": [],
+  "expected": {
+    "PLOT-0912": {
+      "bufferDays": 13,
+      "conclusion": "satisfied",
+      "degradeReasons": [],
+      "remainingDays": 20,
+      "safetyIntervalDays": 7
+    },
+    "PLOT-0915": {
+      "bufferDays": 2,
+      "conclusion": "degraded",
+      "degradeReasons": [
+        "BUFFER_LT_3"
+      ],
+      "remainingDays": 9,
+      "safetyIntervalDays": 7
+    }
+  },
+  "farm": {
+    "farmNo": "FARM-XJ-HT-01",
+    "name": "呼图壁棉花示范农场",
+    "region": "south"
+  },
+  "plots": [
+    {
+      "areaMu": 120.0,
+      "expectedHarvestDate": "2026-12-04",
+      "irrigation": "drip",
+      "owner": "示范农场一组",
+      "phenology": "flower_boll",
+      "plotName": "呼图壁示范田-东区",
+      "plotNo": "PLOT-0912",
+      "region": "south",
+      "variety": "新陆早 57 号"
+    },
+    {
+      "areaMu": 80.0,
+      "expectedHarvestDate": "2026-11-23",
+      "irrigation": "drip",
+      "owner": "示范农场一组",
+      "phenology": "flower_boll",
+      "plotName": "呼图壁示范田-西区",
+      "plotNo": "PLOT-0915",
+      "region": "south",
+      "variety": "新陆早 57 号"
+    }
+  ],
+  "prescriptions": [
+    {
+      "compoundGuard": {
+        "action": "none",
+        "components": [],
+        "detected": false
+      },
+      "evidenceRefs": {
+        "baselineVersion": "BL-COTTON-FLOWER-2026@v2",
+        "historyPrescriptionRef": null,
+        "kbRefs": [
+          {
+            "entryId": "KB-PRESC-HIST-PLOT-0912",
+            "version": "v1"
+          }
+        ],
+        "thresholdVersion": "TH-APHID-2026@v1"
+      },
+      "prescriptionNo": "RX-20261113-0001",
+      "prescriptionVersion": 1,
+      "registrySnapshot": {
+        "degraded": false,
+        "syncedAt": "2026-11-13T08:00:00+08:00",
+        "version": "XJ-REG-2026.11.01"
+      },
+      "resultNo": "SR-20261113-0001-v1",
+      "resultVersion": 1,
+      "safetyCheck": {
+        "alternatives": [
+          {
+            "category": {
+              "aiName": "吡虫啉",
+              "formulation": "可湿性粉剂"
+            },
+            "doseRange": [
+              8.0,
+              16.0
+            ],
+            "registryItemNo": "XJ-IMI-0453",
+            "safetyIntervalDays": 5
+          }
+        ],
+        "bufferDays": 13,
+        "conclusion": "satisfied",
+        "conflictProduct": null,
+        "degradeReasons": [],
+        "remainingDays": 20,
+        "safetyIntervalDays": 7
+      },
+      "schemaVersion": "1.0",
+      "status": "pending_review",
+      "taskNo": "PT-20261113-0001",
+      "windowCheck": {
+        "candidateWindows": [],
+        "checkNo": "WC-D-20261113-0001",
+        "conclusion": "pass",
+        "mandatoryNotices": [],
+        "parentCheckNo": null,
+        "thresholdVersion": "XJ-WIN-THR-2026.04"
+      },
+      "zones": [
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z01"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z02"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z03"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z04"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z05"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z06"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z07"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z08"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z09"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z10"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z11"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z12"
+        }
+      ]
+    },
+    {
+      "compoundGuard": {
+        "action": "none",
+        "components": [],
+        "detected": false
+      },
+      "evidenceRefs": {
+        "baselineVersion": "BL-COTTON-FLOWER-2026@v2",
+        "historyPrescriptionRef": null,
+        "kbRefs": [
+          {
+            "entryId": "KB-PRESC-HIST-PLOT-0915",
+            "version": "v1"
+          }
+        ],
+        "thresholdVersion": "TH-APHID-2026@v1"
+      },
+      "prescriptionNo": "RX-20261113-0002",
+      "prescriptionVersion": 1,
+      "registrySnapshot": {
+        "degraded": false,
+        "syncedAt": "2026-11-13T08:00:00+08:00",
+        "version": "XJ-REG-2026.11.01"
+      },
+      "resultNo": "SR-20261113-0002-v1",
+      "resultVersion": 1,
+      "safetyCheck": {
+        "alternatives": [
+          {
+            "category": {
+              "aiName": "吡虫啉",
+              "formulation": "可湿性粉剂"
+            },
+            "doseRange": [
+              8.0,
+              16.0
+            ],
+            "registryItemNo": "XJ-IMI-0453",
+            "safetyIntervalDays": 5
+          }
+        ],
+        "bufferDays": 2,
+        "conclusion": "degraded",
+        "conflictProduct": null,
+        "degradeReasons": [
+          "BUFFER_LT_3"
+        ],
+        "remainingDays": 9,
+        "safetyIntervalDays": 7
+      },
+      "schemaVersion": "1.0",
+      "status": "degraded_pending_confirm",
+      "taskNo": "PT-20261113-0002",
+      "windowCheck": {
+        "candidateWindows": [],
+        "checkNo": "WC-D-20261113-0002",
+        "conclusion": "pass",
+        "mandatoryNotices": [],
+        "parentCheckNo": null,
+        "thresholdVersion": "XJ-WIN-THR-2026.04"
+      },
+      "zones": [
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z01"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z02"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z03"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z04"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 12.0,
+          "product": {
+            "category": {
+              "aiName": "啶虫脒",
+              "formulation": "乳油"
+            },
+            "registrationNo": "PD20260381",
+            "registryItemNo": "XJ-ACE-0381",
+            "registryVersion": "XJ-REG-2026.11.01",
+            "toxicity": "low"
+          },
+          "safetyIntervalDays": 7,
+          "seasonUsageBefore": 1,
+          "sprayVolumeLPerMu": 1.6,
+          "volumeCorrection": {
+            "applied": true,
+            "finalValue": 1.6,
+            "originalValue": 2.0,
+            "reason": "drip_midpoint"
+          },
+          "zeroApplication": false,
+          "zoneNo": "Z05"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z06"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z07"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z08"
+        },
+        {
+          "dilutionRatio": null,
+          "doseMlPerMu": 0,
+          "product": null,
+          "safetyIntervalDays": null,
+          "seasonUsageBefore": 0,
+          "sprayVolumeLPerMu": 0,
+          "zeroApplication": true,
+          "zoneNo": "Z09"
+        }
+      ]
+    }
+  ],
+  "registry": [
+    {
+      "category": {
+        "aiName": "啶虫脒",
+        "formulation": "乳油"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        10.0,
+        20.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260381",
+      "registryItemNo": "XJ-ACE-0381",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 7,
+      "seasonUsageLimit": 3,
+      "sprayVolumeRangeLPerMu": [
+        1.2,
+        2.0
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "吡虫啉",
+        "formulation": "可湿性粉剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        8.0,
+        16.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260453",
+      "registryItemNo": "XJ-IMI-0453",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 5,
+      "seasonUsageLimit": 3,
+      "sprayVolumeRangeLPerMu": [
+        1.0,
+        1.8
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "阿维菌素",
+        "formulation": "悬浮剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        6.0,
+        12.0
+      ],
+      "formulationType": "single",
+      "registrationNo": "PD20260219",
+      "registryItemNo": "XJ-ABM-0219",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 10,
+      "seasonUsageLimit": 2,
+      "sprayVolumeRangeLPerMu": [
+        1.0,
+        1.6
+      ],
+      "target": "pest_disease",
+      "toxicity": "medium",
+      "valid": true
+    },
+    {
+      "category": {
+        "aiName": "联苯·噻虫嗪",
+        "formulation": "悬浮剂"
+      },
+      "crop": "cotton",
+      "doseRangeMlPerMu": [
+        20.0,
+        40.0
+      ],
+      "formulationType": "mixture_registered",
+      "registrationNo": "PD20260777",
+      "registryItemNo": "XJ-MIX-0777",
+      "registryVersion": "XJ-REG-2026.11.01",
+      "safetyIntervalDays": 14,
+      "seasonUsageLimit": 2,
+      "sprayVolumeRangeLPerMu": [
+        1.2,
+        1.8
+      ],
+      "target": "pest_disease",
+      "toxicity": "low",
+      "valid": true
+    }
+  ],
+  "scenarioId": "normal_plot",
+  "scenarioName": "正常地块与缓冲不足地块",
+  "schemaVersion": "1.0",
+  "seed": 20261113,
+  "stressResults": [
+    {
+      "evidence": [
+        {
+          "refId": "TH-APHID-2026",
+          "type": "threshold",
+          "version": "v1"
+        },
+        {
+          "refId": "BL-COTTON-FLOWER-2026",
+          "type": "baseline",
+          "version": "BL-COTTON-FLOWER-2026@v2"
+        }
+      ],
+      "orthophoto": {
+        "bands": [
+          "NIR",
+          "RED",
+          "GREEN"
+        ],
+        "cloudPct": 4.0,
+        "coverRatio": 1.0,
+        "gsdCm": 3.2,
+        "productVersion": "ortho-2026.11.13-020",
+        "readyTime": "2026-11-13T08:00:00+08:00",
+        "sortieNo": "FL-20261113-020"
+      },
+      "partitions": [
+        {
+          "areaMu": 10.0,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 18.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z01.geojson",
+          "partitionNo": "Z01",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "heavy",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 21.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z02.geojson",
+          "partitionNo": "Z02",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "heavy",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.9,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 25.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z03.geojson",
+          "partitionNo": "Z03",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "medium",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.91,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 28.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z04.geojson",
+          "partitionNo": "Z04",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "medium",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.92,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 32.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z05.geojson",
+          "partitionNo": "Z05",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "light",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.93,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 35.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z06.geojson",
+          "partitionNo": "Z06",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "light",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.94,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 39.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z07.geojson",
+          "partitionNo": "Z07",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 42.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z08.geojson",
+          "partitionNo": "Z08",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 46.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z09.geojson",
+          "partitionNo": "Z09",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.9,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 49.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z10.geojson",
+          "partitionNo": "Z10",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.91,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 53.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z11.geojson",
+          "partitionNo": "Z11",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 10.0,
+          "confidence": 0.92,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 56.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0912/Z12.geojson",
+          "partitionNo": "Z12",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "棉蚜",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        }
+      ],
+      "recognitionMeta": {
+        "dataIntegrity": "complete",
+        "durationSec": 240
+      },
+      "resultNo": "SR-20261113-0001-v1",
+      "resultVersion": 1,
+      "schemaVersion": "1.0",
+      "taskBlock": {
+        "blockingPartitions": [],
+        "reasonCodes": [],
+        "status": "unblocked"
+      },
+      "taskNo": "PT-20261113-0001"
+    },
+    {
+      "evidence": [
+        {
+          "refId": "TH-APHID-2026",
+          "type": "threshold",
+          "version": "v1"
+        },
+        {
+          "refId": "BL-COTTON-FLOWER-2026",
+          "type": "baseline",
+          "version": "BL-COTTON-FLOWER-2026@v2"
+        }
+      ],
+      "orthophoto": {
+        "bands": [
+          "NIR",
+          "RED",
+          "GREEN"
+        ],
+        "cloudPct": 4.0,
+        "coverRatio": 1.0,
+        "gsdCm": 3.2,
+        "productVersion": "ortho-2026.11.13-021",
+        "readyTime": "2026-11-13T08:00:00+08:00",
+        "sortieNo": "FL-20261113-021"
+      },
+      "partitions": [
+        {
+          "areaMu": 8.89,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 18.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z01.geojson",
+          "partitionNo": "Z01",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "heavy",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 21.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z02.geojson",
+          "partitionNo": "Z02",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "medium",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.9,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 25.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z03.geojson",
+          "partitionNo": "Z03",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "medium",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.91,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 28.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z04.geojson",
+          "partitionNo": "Z04",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "light",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.92,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 32.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z05.geojson",
+          "partitionNo": "Z05",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "light",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.93,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 35.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z06.geojson",
+          "partitionNo": "Z06",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.94,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 39.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z07.geojson",
+          "partitionNo": "Z07",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.89,
+          "confidence": 0.88,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 42.5
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z08.geojson",
+          "partitionNo": "Z08",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        },
+        {
+          "areaMu": 8.88,
+          "confidence": 0.89,
+          "explainability": {
+            "pestDensity": {
+              "basis": "黄板计数×百株折算系数 1.15",
+              "unit": "头/百株",
+              "value": 46.0
+            }
+          },
+          "frozen": false,
+          "geometryRef": "obs://cipm-geo/PLOT-0915/Z09.geojson",
+          "partitionNo": "Z09",
+          "review": {
+            "status": "none_required"
+          },
+          "stressLevel": "none",
+          "stressType": "pest_disease",
+          "targetPest": "红蜘蛛",
+          "thresholdRef": {
+            "entryId": "TH-APHID-2026",
+            "version": "v1"
+          }
+        }
+      ],
+      "recognitionMeta": {
+        "dataIntegrity": "complete",
+        "durationSec": 247
+      },
+      "resultNo": "SR-20261113-0002-v1",
+      "resultVersion": 1,
+      "schemaVersion": "1.0",
+      "taskBlock": {
+        "blockingPartitions": [],
+        "reasonCodes": [],
+        "status": "unblocked"
+      },
+      "taskNo": "PT-20261113-0002"
+    }
+  ],
+  "workOrders": []
+}

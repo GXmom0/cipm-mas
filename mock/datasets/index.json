@@ -1,0 +1,85 @@
+{
+  "datasetVersion": "2026.11.13",
+  "demoSteps": [
+    "1. 执行 python -m mock.cli --write 生成三份场景数据",
+    "2. 执行 CIPM_MOCK=1 python ops/start_dev.py 启动服务",
+    "3. 仪表盘按场景切换：正常 / 置信度不足 / 安全间隔冲突",
+    "4. 查看阻断、降级、拒绝、待重新排期四类徽标与中文原因"
+  ],
+  "generatedBy": "python -m mock.cli --write",
+  "scenarios": [
+    {
+      "entryPlotNo": "PLOT-0912",
+      "expectedBadges": [
+        "DEGRADED"
+      ],
+      "expectedRuleConclusion": {
+        "PLOT-0912": {
+          "bufferDays": 13,
+          "conclusion": "satisfied",
+          "degradeReasons": [],
+          "remainingDays": 20,
+          "safetyIntervalDays": 7
+        },
+        "PLOT-0915": {
+          "bufferDays": 2,
+          "conclusion": "degraded",
+          "degradeReasons": [
+            "BUFFER_LT_3"
+          ],
+          "remainingDays": 9,
+          "safetyIntervalDays": 7
+        }
+      },
+      "fileName": "normal_plot.json",
+      "fileSha256": "2853743a8397805a602beef10f5d2883ca3e92c30d8495f8f5bef48d26a99a7b",
+      "scenarioId": "normal_plot",
+      "scenarioName": "正常地块与缓冲不足地块"
+    },
+    {
+      "entryPlotNo": "PLOT-0913",
+      "expectedBadges": [
+        "BLOCKED"
+      ],
+      "expectedRuleConclusion": {
+        "PLOT-0913": {
+          "blockingPartitions": [
+            "Z03"
+          ],
+          "confidence": 0.62,
+          "prescriptions": 0,
+          "taskBlockStatus": "blocked_pending_review"
+        }
+      },
+      "fileName": "low_confidence_plot.json",
+      "fileSha256": "283dbaf6deb6b3e33db17e3ed776e2eea191939251752b906ebd502301972176",
+      "scenarioId": "low_confidence_plot",
+      "scenarioName": "置信度不足地块"
+    },
+    {
+      "entryPlotNo": "PLOT-0914",
+      "expectedBadges": [
+        "REFUSED",
+        "RESCHEDULED"
+      ],
+      "expectedRuleConclusion": {
+        "PLOT-0914": {
+          "bufferDays": -2,
+          "conclusion": "refused",
+          "conflictProduct": "啶虫脒·乳油",
+          "remainingDays": 5,
+          "safetyIntervalDays": 7
+        },
+        "PLOT-0916": {
+          "prescriptionStatus": "approved",
+          "windowVerdict": "fail",
+          "workOrderStatus": "rescheduled"
+        }
+      },
+      "fileName": "safety_conflict_plot.json",
+      "fileSha256": "a41ccbae3de1ed9387484660af274ca8d2b19ee36d6aea7f798f843b87da746e",
+      "scenarioId": "safety_conflict_plot",
+      "scenarioName": "安全间隔冲突与作业窗口重排地块"
+    }
+  ]
+}

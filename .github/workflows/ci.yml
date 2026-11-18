@@ -1,0 +1,42 @@
+name: CIPM-MAS CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  quality:
+    name: quality (${{ github.event_name }})
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+      CIPM_MOCK: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[ui]"
+          pip install -e ".[dev]"
+
+      - name: Mock dataset gate
+        run: python -m mock.cli --check
+
+      - name: Schema contract gate
+        run: python -m sdk.contracts.schema_export --check
+
+      - name: Full test suite (${{ github.event_name }})
+        run: python -m pytest -q

@@ -1,0 +1,367 @@
+{
+  "$defs": {
+    "DispatchZone": {
+      "additionalProperties": false,
+      "properties": {
+        "dilutionRatio": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dilutionratio"
+        },
+        "doseMlPerMu": {
+          "minimum": 0,
+          "title": "Dosemlpermu",
+          "type": "number"
+        },
+        "productCategory": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Productcategory"
+        },
+        "sprayVolumeLPerMu": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sprayvolumelpermu"
+        },
+        "zeroApplication": {
+          "default": false,
+          "title": "Zeroapplication",
+          "type": "boolean"
+        },
+        "zoneNo": {
+          "minLength": 1,
+          "title": "Zoneno",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zoneNo",
+        "doseMlPerMu"
+      ],
+      "title": "DispatchZone",
+      "type": "object"
+    },
+    "FlightConstraint": {
+      "additionalProperties": false,
+      "properties": {
+        "altitudeM": {
+          "description": "作业飞行高度（米）",
+          "exclusiveMinimum": 0,
+          "maximum": 30,
+          "title": "Altitudem",
+          "type": "number"
+        },
+        "speedMps": {
+          "description": "作业飞行速度（米/秒）",
+          "exclusiveMinimum": 0,
+          "maximum": 10,
+          "title": "Speedmps",
+          "type": "number"
+        }
+      },
+      "required": [
+        "altitudeM",
+        "speedMps"
+      ],
+      "title": "FlightConstraint",
+      "type": "object"
+    },
+    "MandatoryAck": {
+      "additionalProperties": false,
+      "properties": {
+        "checked": {
+          "default": false,
+          "description": "强制提示是否已确认",
+          "title": "Checked",
+          "type": "boolean"
+        },
+        "checkedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checkedat"
+        },
+        "checkedBy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checkedby"
+        }
+      },
+      "title": "MandatoryAck",
+      "type": "object"
+    },
+    "MandatoryNoticeItem": {
+      "additionalProperties": false,
+      "properties": {
+        "ackRequired": {
+          "default": true,
+          "title": "Ackrequired",
+          "type": "boolean"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "measures": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Measures",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "measures"
+      ],
+      "title": "MandatoryNoticeItem",
+      "type": "object"
+    },
+    "OperatorConfirm": {
+      "additionalProperties": false,
+      "properties": {
+        "confirmedAt": {
+          "minLength": 1,
+          "title": "Confirmedat",
+          "type": "string"
+        },
+        "confirmedBy": {
+          "minLength": 1,
+          "title": "Confirmedby",
+          "type": "string"
+        }
+      },
+      "required": [
+        "confirmedBy",
+        "confirmedAt"
+      ],
+      "title": "OperatorConfirm",
+      "type": "object"
+    },
+    "Schedule": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "description": "作业结束时间，带 +08:00",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "description": "作业开始时间，带 +08:00",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Schedule",
+      "type": "object"
+    },
+    "WindowCheckRef": {
+      "additionalProperties": false,
+      "properties": {
+        "checkNo": {
+          "description": "执行阶段校验编号",
+          "pattern": "^WC-E-[0-9A-Za-z\\-]+$",
+          "title": "Checkno",
+          "type": "string"
+        },
+        "parentCheckNo": {
+          "description": "关联的决策阶段校验编号",
+          "pattern": "^WC-D-[0-9A-Za-z\\-]+$",
+          "title": "Parentcheckno",
+          "type": "string"
+        },
+        "thresholdVersion": {
+          "title": "Thresholdversion",
+          "type": "string"
+        },
+        "verdict": {
+          "enum": [
+            "pass",
+            "pass_with_mandatory_notice",
+            "fail"
+          ],
+          "title": "Verdict",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkNo",
+        "verdict",
+        "thresholdVersion",
+        "parentCheckNo"
+      ],
+      "title": "WindowCheckRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "batchNo": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "批量批次编号",
+      "title": "Batchno"
+    },
+    "flightConstraint": {
+      "$ref": "#/$defs/FlightConstraint"
+    },
+    "idempotencyKey": {
+      "default": "",
+      "description": "幂等键，缺省取 workOrderNo",
+      "title": "Idempotencykey",
+      "type": "string"
+    },
+    "mandatoryAck": {
+      "$ref": "#/$defs/MandatoryAck"
+    },
+    "mandatoryNotices": {
+      "items": {
+        "$ref": "#/$defs/MandatoryNoticeItem"
+      },
+      "title": "Mandatorynotices",
+      "type": "array"
+    },
+    "operatorConfirm": {
+      "$ref": "#/$defs/OperatorConfirm"
+    },
+    "plotNo": {
+      "minLength": 1,
+      "title": "Plotno",
+      "type": "string"
+    },
+    "prescriptionNo": {
+      "minLength": 1,
+      "title": "Prescriptionno",
+      "type": "string"
+    },
+    "prescriptionVersion": {
+      "minimum": 1,
+      "title": "Prescriptionversion",
+      "type": "integer"
+    },
+    "queueRank": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "批次内位次",
+      "title": "Queuerank"
+    },
+    "schedule": {
+      "$ref": "#/$defs/Schedule"
+    },
+    "schemaVersion": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "templateVersion": {
+      "description": "指令模板版本，单地块与批量共用",
+      "minLength": 1,
+      "title": "Templateversion",
+      "type": "string"
+    },
+    "urgency": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "紧迫度",
+      "title": "Urgency"
+    },
+    "windowCheckRef": {
+      "$ref": "#/$defs/WindowCheckRef"
+    },
+    "workOrderNo": {
+      "minLength": 1,
+      "title": "Workorderno",
+      "type": "string"
+    },
+    "zones": {
+      "items": {
+        "$ref": "#/$defs/DispatchZone"
+      },
+      "minItems": 1,
+      "title": "Zones",
+      "type": "array"
+    }
+  },
+  "required": [
+    "templateVersion",
+    "workOrderNo",
+    "plotNo",
+    "prescriptionNo",
+    "prescriptionVersion",
+    "zones",
+    "flightConstraint",
+    "schedule",
+    "windowCheckRef",
+    "operatorConfirm"
+  ],
+  "title": "DispatchCommand",
+  "type": "object"
+}

@@ -1,0 +1,287 @@
+{
+  "$defs": {
+    "AfterRef": {
+      "additionalProperties": false,
+      "properties": {
+        "resultNo": {
+          "minLength": 1,
+          "title": "Resultno",
+          "type": "string"
+        },
+        "resultVersion": {
+          "minimum": 1,
+          "title": "Resultversion",
+          "type": "integer"
+        },
+        "sortieNo": {
+          "minLength": 1,
+          "title": "Sortieno",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sortieNo",
+        "resultNo",
+        "resultVersion"
+      ],
+      "title": "AfterRef",
+      "type": "object"
+    },
+    "AssessmentVerdict": {
+      "enum": [
+        "qualified",
+        "not_qualified",
+        "pending"
+      ],
+      "title": "AssessmentVerdict",
+      "type": "string"
+    },
+    "BeforeRef": {
+      "additionalProperties": false,
+      "properties": {
+        "resultNo": {
+          "minLength": 1,
+          "title": "Resultno",
+          "type": "string"
+        },
+        "resultVersion": {
+          "minimum": 1,
+          "title": "Resultversion",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "resultNo",
+        "resultVersion"
+      ],
+      "title": "BeforeRef",
+      "type": "object"
+    },
+    "Metrics": {
+      "additionalProperties": false,
+      "properties": {
+        "coveragePct": {
+          "description": "作业覆盖率",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Coveragepct",
+          "type": "number"
+        },
+        "deviationZones": {
+          "description": "一般偏差分区",
+          "items": {
+            "type": "string"
+          },
+          "title": "Deviationzones",
+          "type": "array"
+        },
+        "severeDeviationZones": {
+          "description": "重度偏差分区",
+          "items": {
+            "type": "string"
+          },
+          "title": "Severedeviationzones",
+          "type": "array"
+        },
+        "suppressionRate": {
+          "description": "胁迫缓解率",
+          "maximum": 1,
+          "minimum": -1,
+          "title": "Suppressionrate",
+          "type": "number"
+        }
+      },
+      "required": [
+        "coveragePct",
+        "suppressionRate"
+      ],
+      "title": "Metrics",
+      "type": "object"
+    },
+    "NextRound": {
+      "additionalProperties": false,
+      "properties": {
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "recommendedAction": {
+          "enum": [
+            "continue",
+            "recheck",
+            "manual_expert",
+            "stop"
+          ],
+          "title": "Recommendedaction",
+          "type": "string"
+        },
+        "suggestedDate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suggesteddate"
+        }
+      },
+      "required": [
+        "recommendedAction"
+      ],
+      "title": "NextRound",
+      "type": "object"
+    },
+    "PrescriptionEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "prescriptionNo": {
+          "minLength": 1,
+          "title": "Prescriptionno",
+          "type": "string"
+        },
+        "prescriptionVersion": {
+          "minimum": 1,
+          "title": "Prescriptionversion",
+          "type": "integer"
+        },
+        "productCategories": {
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "minItems": 1,
+          "title": "Productcategories",
+          "type": "array"
+        },
+        "registryVersion": {
+          "minLength": 1,
+          "title": "Registryversion",
+          "type": "string"
+        },
+        "zoneCount": {
+          "minimum": 1,
+          "title": "Zonecount",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prescriptionNo",
+        "prescriptionVersion",
+        "registryVersion",
+        "zoneCount",
+        "productCategories"
+      ],
+      "title": "PrescriptionEvidence",
+      "type": "object"
+    },
+    "Timeliness": {
+      "additionalProperties": false,
+      "properties": {
+        "assessedAt": {
+          "title": "Assessedat",
+          "type": "string"
+        },
+        "completedAt": {
+          "title": "Completedat",
+          "type": "string"
+        },
+        "hoursElapsed": {
+          "minimum": 0,
+          "title": "Hourselapsed",
+          "type": "number"
+        }
+      },
+      "required": [
+        "completedAt",
+        "assessedAt",
+        "hoursElapsed"
+      ],
+      "title": "Timeliness",
+      "type": "object"
+    },
+    "VerdictRule": {
+      "additionalProperties": false,
+      "properties": {
+        "ruleExpression": {
+          "minLength": 1,
+          "title": "Ruleexpression",
+          "type": "string"
+        },
+        "ruleVersion": {
+          "minLength": 1,
+          "title": "Ruleversion",
+          "type": "string"
+        },
+        "verdict": {
+          "$ref": "#/$defs/AssessmentVerdict"
+        }
+      },
+      "required": [
+        "verdict",
+        "ruleVersion",
+        "ruleExpression"
+      ],
+      "title": "VerdictRule",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "afterRef": {
+      "$ref": "#/$defs/AfterRef"
+    },
+    "assessmentNo": {
+      "minLength": 1,
+      "title": "Assessmentno",
+      "type": "string"
+    },
+    "beforeRef": {
+      "$ref": "#/$defs/BeforeRef"
+    },
+    "metrics": {
+      "$ref": "#/$defs/Metrics"
+    },
+    "nextRound": {
+      "$ref": "#/$defs/NextRound"
+    },
+    "prescriptionEvidence": {
+      "$ref": "#/$defs/PrescriptionEvidence"
+    },
+    "schemaVersion": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "timeliness": {
+      "$ref": "#/$defs/Timeliness"
+    },
+    "verdictRule": {
+      "$ref": "#/$defs/VerdictRule"
+    },
+    "workOrderNo": {
+      "minLength": 1,
+      "title": "Workorderno",
+      "type": "string"
+    }
+  },
+  "required": [
+    "assessmentNo",
+    "workOrderNo",
+    "beforeRef",
+    "afterRef",
+    "timeliness",
+    "prescriptionEvidence",
+    "metrics",
+    "verdictRule",
+    "nextRound"
+  ],
+  "title": "AssessmentPayload",
+  "type": "object"
+}
