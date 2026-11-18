@@ -1,6 +1,6 @@
 # 新疆棉田植保决策多智能体系统（CIPM-MAS）
 
-[![CIPM-MAS CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+[![CIPM-MAS CI](https://github.com/GXmom0/cipm-mas/actions/workflows/ci.yml/badge.svg)](https://github.com/GXmom0/cipm-mas/actions/workflows/ci.yml)
 
 面向新疆棉田的低空植保决策闭环系统：接收无人机多光谱正射影像与田间传感数据，识别病虫害胁迫，生成变量施药处方，联动植保设备作业，并用回传数据完成效果评估。
 
