@@ -20,6 +20,38 @@
 
 > 完整设计见 `.codeartsdoer/specs/cotton_ipm_mas/spec.md` 与 `design.md`；下列标注以当前仓库代码与测试为准。
 
+### 真实性边界说明
+
+为避免误解，这里明确区分"真实运行"与"Mock 演示"，不夸大、不回避：
+
+| 环节 | 状态 | 说明 |
+|---|---|---|
+| 规则引擎（`domain/rules/*` 纯函数） | ✅ 真实可运行 | 安全间隔、单剂复配、作业窗口、处方前置门禁均为确定性纯函数，给定输入可复算 |
+| Open-Meteo 气象 | ✅ 真实可运行 | `CIPM_WEATHER_PROVIDER=openmeteo` 拉取真实预报，失败自动降级并记 DEGRADED |
+| 登记用药目录 | ✅ 真实可运行 | `knowledge/real_registry.json` 11 条真实登记数据（来源 icama.cn / 农业农村部） |
+| LLM 处方候选 + 安全沙箱 | ✅ 真实可运行 | `CIPM_RUNTIME=agentarts` 模式接入真实大模型，产物必须通过安全沙箱与规则校验 |
+| 控制台页面数据 | 🧪 Mock 演示 | 来自 Mock 数据集 / 后端 Mock 投影，**页面暂无真实数据上传入口** |
+| 影像解析（M02） | 🧪 Mock 演示 | 读预置 `stressResult`，未接真实 rasterio + NDVI |
+| 胁迫识别 / 分区等级 | 🧪 Mock 演示 | `mock/builder.py` 生成 |
+| 设备 REST 执行 | 🧪 Mock 演示 | `device_stub` 内存回执，未接真实设备 |
+| 评估回传 | 🧪 Mock 演示 | mock recheck / feedback |
+| 持久化落库 | 📋 规划中 | 状态与审计暂用 JSONL / 内存，PostgreSQL DDL 未落地 |
+
+**准确性分层**
+
+- **能保证**：给定正确输入时，规则引擎的安全间隔、单剂复配、作业窗口、处方前置门禁判定是**确定性、可复算、准确的**（无 IO / 无随机 / 无 `datetime.now()`）。
+- **不成立**：端到端"从影像到评估"的准确性——影像识别、虫口密度、设备回执、评估数据目前均为 Mock，输入端不真实。
+
+**从演示到生产的下一轮迭代清单**
+
+1. **M02 影像解析**：接入 rasterio + NDVI，产出真实 `stressResult`；
+2. **控制台上传入口**：支持上传影像 / 导入处方 / 设备回执；
+3. **设备 REST 真实下发**：以 `adapters/device` 替代 `device_stub`；
+4. **PostgreSQL 持久化**：状态、幂等、审计落库（当前 📋）；
+5. **置信度门禁 + 阻断复核（M04）**：落地完整 BlockController（当前 🧪）。
+
+> 我们清楚哪些已真实可跑、哪些仍是演示骨架；这份边界声明即是我们对"做了什么、没做什么"的如实交代。
+
 ### 能力实现状态（三档标注）
 
 **巡田阶段**
